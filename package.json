@@ -1,5 +1,5 @@
 {
-  "name": "@kyndryl/quick-web-framework",
+  "name": "@iopanda/quick-web-framework",
   "version": "1.0.7",
   "bin": {
     "wapp": "./bin/wapp.js"
