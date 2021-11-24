@@ -1,0 +1,15 @@
+{
+    "name": "<%= name %>",
+    "version": "0.0.1",
+    "description": "build by wapp",
+    "main": "index.js",
+    "scripts": {
+      "start": "wapp start"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "@iopanda/quick-web-framework": "^1.0.6"
+    }
+  }
+  

@@ -1,0 +1,102 @@
+application:
+  name: <%= name %>
+<%_ if(plugins.indexOf('framework::middleware::staticResources') != -1){ _%>
+  staticResources:
+    - path: public
+      location: /pages/public
+    - path: protected
+      location: /pages/protected
+<%_ } _%>
+<%_ if(plugins.indexOf('framework::middleware::authenticator') != -1){ _%>
+  authenticator:
+    strategy: "openidconnect|ibm_appid|oidc-client"
+    protectedUrls:
+      - "/protected"
+    enableSession: true
+    # ----- openidconnect
+    # authorizationURL: "<place_with_value>"
+    # tokenURL: "<place_with_value>"
+    # clientID: "<place_with_value>"
+    # scope: "<place_with_value>"
+    # response_type: "<place_with_value>"
+    # clientSecret: "<place_with_value>"
+    # skipUserProfile: "<place_with_value>"
+    # issuer: "<place_with_value>"
+    # addCACert: "<place_with_value>"
+    # callbackUrl: "<place_with_value>"
+    # CACertPathList: "<place_with_value>"
+    # ----- ibm_appid
+    # name: "<place_with_value>"
+    # clientId: "<place_with_value>"
+    # tenantId: "<place_with_value>"
+    # secret: "<place_with_value>"
+    # oAuthServerUrl: "<place_with_value>"
+    # profilesUrl: "<place_with_value>"
+    # discoveryEndpoint: "<place_with_value>"
+    # type: "<place_with_value>"
+    # scopes: "<place_with_value>"
+    # redirectUri: "<place_with_value>"
+    # ----- openid-client
+    # issuer: "<place_with_value>"
+    # authorization_endpoint: "<place_with_value>"
+    # token_endpoint: "<place_with_value>"
+    # jwks_uri: "<place_with_value>"
+    # userinfo_endpoint: "<place_with_value>"
+    # introspection_endpoint: "<place_with_value>"
+    # client_id: "<place_with_value>"
+    # client_secret: "<place_with_value>"
+    # redirect_uris: "<place_with_value>"
+    # response_types: "<place_with_value>"
+<%_ } _%>
+<%_ if(plugins.indexOf('framework::middleware::viewEngine') != -1){ _%>
+  viewEngine:
+    path: views
+    engine: ejs
+    location: /views
+<%_ } _%>
+<%_ if(plugins.indexOf('framework::middleware::expressRouters') != -1){ _%>
+  expressRouters:
+    - path: routes
+      type: autoscan
+      location: /api
+    - path: routes/sepcial
+      type: specific
+      location: /sepcial
+<%_ } _%>
+<%_ if(plugins.indexOf('framework::middleware::session') != -1){ _%>
+  session:
+    # options: https://www.npmjs.com/package/express-session
+    name: "localhost"
+    proxy: true | false | undefined
+    resave: false
+    rolling: false
+    saveUninitialized: false
+    secret: "secret"
+    cookie:
+      domain: ""
+      expires: 232323
+      httpOnly: true | false
+      maxAge: 123
+      path: ""
+      sameSite: true | false | "lax" | "none" | "strict"
+      secure: true | false
+    persistence: 
+      # options: https://www.npmjs.com/package/redis
+      store: redis
+      host: "127.0.0.1"
+      port: 6379
+      path: ""
+      url: ""
+      user: ""
+      password: ""
+      db: ""
+      tls: ""
+      prefix: ""
+      connect_timeout: 3600000
+      
+<%_ } _%>
+
+  plugins:
+<%_ plugins.forEach(function(plugin){ _%>
+    - <%=plugin%>
+<%_ }) _%>
