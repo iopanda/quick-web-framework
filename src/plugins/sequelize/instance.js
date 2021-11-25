@@ -1,6 +1,6 @@
 const { Sequelize, DataTypes, Model, Op } = require('sequelize')
-const {ENV, CONFIG} = require('../../config')
-const constants = require('../../constants')
+// const {ENV, CONFIG} = require('../../config')
+// const constants = require('../../constants')
 const config = require('./config')
 
 var sequelize = null;

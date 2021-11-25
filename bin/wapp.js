@@ -24,8 +24,8 @@ const QUESTIONS = [
             { title: 'Framework::Middleware::StaticResources', value: "framework::middleware::staticResources" },
             { title: 'Framework::Middleware::ViewEngine', value: "framework::middleware::viewEngine" },
             { title: 'Framework::Middleware::ExpressRouter', value: "framework::middleware::expressRouters" },
-            // { title: 'Framework::Middleware::SessionManagement', value: "framework::middleware::sessionManagement" },
-            { title: 'Framework::database::ORMFramework', value: "framework::database::ormFramework" },
+            // { title: 'Framework::Middleware::SessionManagement', value: "framework::middleware::session" },
+            { title: 'Framework::Module::Sequelize', value: "framework::module::sequelize" },
             // { title: 'Framework::sdk::Email', value: "framework::sdk::email" }
         ]
     }
