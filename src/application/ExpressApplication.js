@@ -2,9 +2,7 @@ const yaml = require('js-yaml');
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
-const http = require('http');
 const logger = require('morgan');
-
 const constants = require('../constants');
 const {CONFIG, ENV} = require('../config');
 
@@ -115,7 +113,18 @@ module.exports = class ApplicationServer {
     }
 
     start() {
-        var server = http.createServer(this.app);
+        var http = null;
+        var server = null;
+        if(process.env['PROTOCOL'] && process.env['PROTOCOL'].toLowerCase() == 'https'){
+            http = require('https');
+            server = http.createServer({
+                key: fs.readFileSync('./cert/key.pem'),
+                cert: fs.readFileSync('./cert/cert.pem')
+            }, this.app)
+        }else{
+            http = require('http')
+            server = http.createServer(this.app)
+        }
         var debug = this.debug;
         server.listen(this.PORT);
         server.on('error', this.onError);

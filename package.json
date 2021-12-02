@@ -1,6 +1,6 @@
 {
   "name": "@iopanda/quick-web-framework",
-  "version": "1.0.7",
+  "version": "1.0.9",
   "bin": {
     "wapp": "./bin/wapp.js"
   },
