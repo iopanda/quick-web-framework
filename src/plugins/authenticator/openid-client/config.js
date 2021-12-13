@@ -19,7 +19,11 @@ function getProfile(){
     var result = {};
     for(let k in CONF_ENV_MAPPER){
         if(ENV(CONF_ENV_MAPPER[k])) {
-            result[k] = ENV(CONF_ENV_MAPPER[k]);
+            if(['redirect_uris', 'response_types'].indexOf(k) > -1){
+                result[k] = JSON.parse(ENV(CONF_ENV_MAPPER[k]));
+            }else{
+                result[k] = ENV(CONF_ENV_MAPPER[k]);
+            }
         } else if (config[k]) {
             result[k] = config[k];
         }

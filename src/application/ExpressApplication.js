@@ -25,7 +25,8 @@ module.exports = class ApplicationServer {
         this.PORT = normalizePort(ENV("PORT", 3000));
         this.debug = require('debug')(CONFIG.application.name);
         this.app = express();
-        this.app.use(express.json());
+        this.app.use(express.json({limit: process.env['HTTP_BODY_LIMIT'] || '1mb'}));
+        this.app.use(express.urlencoded({limit: process.env['HTTP_BODY_LIMIT'] || '1mb', extended: true}));
         this.init();
     }
 
